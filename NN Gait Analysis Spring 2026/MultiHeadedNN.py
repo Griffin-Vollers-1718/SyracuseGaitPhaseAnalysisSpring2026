@@ -22,7 +22,7 @@ class MultiHeadNN(nn.Module):
         self.use_batch_norm = use_batch_norm
         
         # Input branch with batch normalization
-        layers = [nn.Linear(input_size, hidden_size[0])]
+        layers: list[nn.Module] = [nn.Linear(input_size, hidden_size[0])]
         if use_batch_norm:
             layers.append(nn.BatchNorm1d(hidden_size[0]))
         layers.extend([
@@ -32,7 +32,7 @@ class MultiHeadNN(nn.Module):
         self.input_branch = nn.Sequential(*layers)
         
         # Shared layers with batch normalization
-        shared_layers = [nn.Linear(hidden_size[0], hidden_size[1])]
+        shared_layers: list[nn.Module] = [nn.Linear(hidden_size[0], hidden_size[1])]
         if use_batch_norm:
             shared_layers.append(nn.BatchNorm1d(hidden_size[1]))
         shared_layers.extend([
@@ -87,7 +87,7 @@ def prepare_data(
     batch_size: int,
     train_split: float = 0.8,
     random_seed: int = 42
-) -> Tuple[DataLoader, DataLoader]:
+)-> Tuple[DataLoader, DataLoader]: 
     """
     Convert data to PyTorch tensors and create train/validation dataloaders
     
@@ -118,7 +118,7 @@ def prepare_data(
     if len(y_bi_tensor.shape) == 1:
         y_bi_tensor = y_bi_tensor.unsqueeze(1)
     if len(y_per_tensor.shape) == 1:
-        y_per_tensor = y_bi_tensor.unsqueeze(1)
+        y_per_tensor = y_per_tensor.unsqueeze(1)
     
     # Create dataset
     dataset = TensorDataset(X_tensor, y_bi_tensor, y_per_tensor)
@@ -147,7 +147,7 @@ def prepare_data(
         num_workers=0
     )
     
-    return train_loader, val_loader, val_dataset
+    return train_loader, val_loader
 
 
 def train_model(

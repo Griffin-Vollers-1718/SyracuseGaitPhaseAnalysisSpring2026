@@ -5,8 +5,8 @@ import pandas as pd
 
 
 def load_data():
-    S1data = sio.loadmat('S1-1ms.mat',squeeze_me = False)
-    S08data = sio.loadmat('S1-08ms.mat',squeeze_me = False)
+    S1data = sio.loadmat('NN Gait Analysis Spring 2026/S1-1ms.mat',squeeze_me = False)
+    S08data = sio.loadmat('NN Gait Analysis Spring 2026/S1-08ms.mat',squeeze_me = False)
     # Extracts the data based on the header info from the loadmat function 
     AngularX1 = S1data['footAngularVelocityX']
     AngularY1 = S1data['footAngularVelocityY']

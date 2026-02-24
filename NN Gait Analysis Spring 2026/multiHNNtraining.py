@@ -36,7 +36,7 @@ loss_weights = (1.0, 1.0)
 
 ## Data Manipulation Section Here
 
-"AXd1 is the angular velocity in the sagital plane"
+"AXd1 is the angular velocity of all three planes of the foot"
 AXd1 = Data_1[0:3,:]
 
 
@@ -73,7 +73,7 @@ y_val = labels[len_train:len(labels)-200]
 "This code prepares the data to be used in a Pytorch model"
 # Prepare data
 
-train_loader, val_loader, val_dataset = MultiHeadedNN.prepare_data(X, y, y_perc, batch_size= batch_size)
+train_loader, val_loader = MultiHeadedNN.prepare_data(X, y, y_perc, batch_size= batch_size)
 
 ## Model Creation
 
